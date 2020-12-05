@@ -1,50 +1,48 @@
-#A Simple Appointment Making App
+# A Simple Appointment Making App
 
-    This app can be used to signup and login using user credential to make appointments, edit or delete appointments.
+  This app can be used to signup and login using user credential to make appointments,  edit or delete appointments.
 
-##Overview of Appointment Making App
+## Overview of Appointment Making App
 The app will have:
 
-    * Login/Logout, Signup pages.
-    *Form data will be validated by front-end before being sent to back-end.
-    *Depending on User's credential, homepage displays its available appointments and its functionalities.
+* Login/Logout, Signup pages.
+* Form data will be validated by front-end before being sent to back-end.
+* Depending on User's credential, homepage displays its available appointments and its  functionalities.
 
----
 
-##User Authentication
+## User Authentication
 
-    In order to have full functionalities, new users are required to signup and current user is required to login. The current implimentation of user authentification system use JWT based Auth0.
+    In order to have full functionalities, new users are required to signup and current  user is required to login. The current implimentation of user authentification system use  JWT based Auth0.
 
-###After login:
+### After login:
 
 - the user can _make_ new appointments
 - _look up_ and _delete_ appointments
 
 ---
 
-##Frontend:
-_ Reactjs
-_ Bootstrap
+## Frontend:
+* Reactjs
+* Bootstrap
 
-##Backend:
-_ Nodejs
-_ Expressjs
+## Backend:
+* Nodejs
+* Expressjs
 
-##Database:
-\*MySQL (Workbench)
+## Database:
+* MySQL (Workbench)
 
-##Technology
-
+## Technology
 This full stack app uses following modules:
 
-    *React
-    *react-router-dome
-    *axios
-    *Bootstrap 4
-    *Body parser
-    *Yup
+* React
+* react-router-dome
+* axios
+* Bootstrap 4
+* Body parser
+* Yup
 
----
+
 
 ## Contributing
 
@@ -56,4 +54,4 @@ This full stack app uses following modules:
 
 ---
 
----
+
