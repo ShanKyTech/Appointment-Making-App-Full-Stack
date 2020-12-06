@@ -30,16 +30,20 @@ The app will have:
 ## Frontend:
 
 - Reactjs
+    - ``` npm install ```
+    - ``` npm start ```
 - Bootstrap
 
 ## Backend:
 
-- Nodejs
-- Expressjs
+- Nodejs & Expressjs
+    - npm install
+    - npm run server
 
 ## Database:
 
 - MySQL (Workbench)
+    
 
 ## Technology
 
