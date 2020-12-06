@@ -1,15 +1,22 @@
 {
-  "name": "server",
+  "name": "node-app",
   "version": "1.0.0",
-  "description": "Nodejs Expressjs API",
-  "main": "server.js",
+  "description": "node js assignment project",
+  "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js"
+      "server": "nodemon server.js"
   },
-  "keywords": [
-    "Nodejs",
-    "Expressjs"
-  ],
-  "author": "Shankar Gurung",
-  "license": "ISC"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mysql2": "^2.2.5",
+      "nodemon": "^2.0.6",
+      "sequelize": "^6.3.5"
+  }
 }
