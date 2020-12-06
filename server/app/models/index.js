@@ -23,6 +23,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("./User.js")(sequelize, Sequelize);
+db.appointment = require("./Appointment.js")(sequelize, Sequelize);
 
+
+db.user.hasMany(db.appointment);
+db.appointment.belongsTo(db.user);
 
 module.exports = db;
