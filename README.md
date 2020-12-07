@@ -46,11 +46,18 @@ login. The current implimentation of user authentification system use JWT based 
 This full stack app uses following modules:
 
 - React
+- craco, postcss, autoprefixer
+- tailwindcss
 - react-router-dome
 - axios
 - Bootstrap 4
 - Body parser
-- Yup
+- bcryptjs
+- express
+- cors
+- jsonwebtoken
+- sequelize
+- mysql2
 
 ## Contributing
 
