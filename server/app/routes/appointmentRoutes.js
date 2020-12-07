@@ -18,9 +18,9 @@ module.exports = function (app) {
   );
   app.get("/api/appointments/view/:id", [authJwt.verifyToken], controller.view);
   app.post(
-    "/api/appointments/update",
+    "/api/appointments/create",
     [authJwt.verifyToken],
-    controller.update
+    controller.create
   );
   app.delete(
     "/api/appointments/destroy/:id",
