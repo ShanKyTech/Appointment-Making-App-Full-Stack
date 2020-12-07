@@ -3,7 +3,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import CheckButton from "react-validation/build/button";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import validator from "validator";
+import { isEmail } from "validator";
 import authenticate from "../../services/auth";
 import AuthService from "../../services/auth-service";
 const required = (value) => {
@@ -18,69 +18,8 @@ const password = (value, props, components) => {
 };
 
 const email = (value) => {
-  if (!validator.isEmail(value)) {
-    return (
-      <div className="text-red-500" role="alert">
-        {value} is not a valid email.
-      </div>
-    );
-  }
-};
-const minlength = (value) => {
-  if (value.length < 4) {
-    return (
-      <div className="text-red-500" role="alert">
-        Password should be min 4 characters.
-      </div>
-    );
-  }
-};
-
-const maxlength = (value) => {
-  if (value.length > 15) {
-    return (
-      <div className="text-red-500" role="alert">
-        Password should be max 15 characters.
-      </div>
-    );
-  }
-};
-const addressMinlength = (value) => {
-  if (value.length < 5) {
-    return (
-      <div className="text-red-500" role="alert">
-        must be more than 5 characters
-      </div>
-    );
-  }
-};
-const phoneLength = (value) => {
-  if (value.length != 10) {
-    return (
-      <div className="text-red-500" role="alert">
-        must be exactly 10 integers.
-      </div>
-    );
-  }
-};
-const IntegerValidation = (value) => {
-  let regx = /^([+-]?[0-9]\d*|0)$/;
-  if (!regx.test(value)) {
-    return (
-      <div className="text-red-500" role="alert">
-        Must be integer.
-      </div>
-    );
-  }
-};
-const dateValidation = (value) => {
-  let regx = /^(((0[1-9]|[12][0-9]|30)[-/]?(0[13-9]|1[012])|31[-/]?(0[13578]|1[02])|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/]?[0-9]{4}|29[-/]?02[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$/;
-  if (!regx.test(value)) {
-    return (
-      <div className="text-red-500" role="alert">
-        Must be date type
-      </div>
-    );
+  if (!isEmail(value)) {
+    return <div className="text-red-600">This is not a valid email.</div>;
   }
 };
 
@@ -280,11 +219,7 @@ class Register extends Component {
                           type="phone"
                           name="phone"
                           id="phone"
-                          validations={[
-                            required,
-                            IntegerValidation,
-                            phoneLength,
-                          ]}
+                          validations={[required]}
                           value={this.state.phone}
                           onChange={this.onChangePhone}
                           className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
@@ -302,7 +237,7 @@ class Register extends Component {
                           type="text"
                           name="dob"
                           id="dob"
-                          validations={[required, dateValidation]}
+                          validations={[required]}
                           value={this.state.dob}
                           onChange={this.onChangeDob}
                           className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
@@ -324,7 +259,6 @@ class Register extends Component {
                         id="address"
                         value={this.state.address}
                         onChange={this.onChangeAddress}
-                        validations={[addressMinlength, required]}
                         className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
                       />
                     </div>
@@ -358,7 +292,7 @@ class Register extends Component {
                         <Input
                           type="password"
                           name="password"
-                          validations={[required, minlength, maxlength]}
+                          validations={[required]}
                           value={this.state.password}
                           onChange={this.onChangePassword}
                           className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"

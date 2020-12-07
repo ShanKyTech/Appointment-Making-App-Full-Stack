@@ -1,2 +1,8 @@
-node_modules
-config
+# dependencies
+/node_modules
+/config
+
+
+
+# production
+/build
