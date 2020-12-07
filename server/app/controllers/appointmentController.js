@@ -79,29 +79,31 @@ exports.view = async (req, res) => {
  * update appointment
  * @param id
  */
-exports.update = (req, res) => {
-
-  const id = req.params.id;
-  console.log(id)
-
-  Appoinment.update(req.body, {
-      where: { id: id }
-  })
-      .then(appoinment => {
-          if (!appoinment) {
-              res.status(404).send("Data not found!");
-          } else {
-              appoinment.name
-          }
-
-      })
-      .catch(err => {
-          res.status(500).send({
-              message: "Error updating Tutorial with id=" + id
-          });
+exports.update = async (req, res) => {
+  try {
+    const appointment = await Appointment.update(
+      {
+        location: req.body.location,
+        date: req.body.date,
+        time: req.body.time,
+        userId: req.userId,
+      },
+      { where: { id: req.body.id } }
+    );
+    if (!appointment) {
+      return res.status(200).send({
+        status: 404,
+        message: "No data found",
       });
+    }
+    res.status(200).send({
+      status: 200,
+      message: "Data Update Successfully",
+    });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
 };
-
 /**
  *
  * @param {*} req
