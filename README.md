@@ -14,7 +14,7 @@ The app will have:
 
 ## User Authentication
 
-In order to have full functionalities, new users are required to signup and current user is required to 
+In order to have full functionalities, new users are required to signup and current user is required to
 
 login. The current implimentation of user authentification system use JWT based Auth0.
 
@@ -23,25 +23,23 @@ login. The current implimentation of user authentification system use JWT based 
 - the user can _make_ new appointments
 - _look up_ and _delete_ appointments
 
-
-
 ## Frontend:
 
 - Reactjs
-    - ``` npm install ```
-    - ``` npm start ```
+  - `npm install`
+  - `npm start`
 - Bootstrap
 
 ## Backend:
 
 - Nodejs & Expressjs
-    - npm install
-    - npm run server
+  - npm install
+  - npm run server
 
 ## Database:
 
 - MySQL (Workbench)
-    
+- AWS RDS MySQL
 
 ## Technology
 
