@@ -6,4 +6,4 @@ config
 
 
 # production
-/build
+build
