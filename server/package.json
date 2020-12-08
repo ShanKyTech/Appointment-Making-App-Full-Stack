@@ -2,12 +2,12 @@
     "name": "node-app",
     "version": "1.0.0",
     "description": "node js assignment project",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "server": "nodemon server.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "Shankar Gurung",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",

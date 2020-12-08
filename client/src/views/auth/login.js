@@ -111,7 +111,7 @@ class Login extends Component {
     }
     return (
       <div className="max-w-md w-full mx-auto">
-        <h1 className="text-4xl text-center mb-12 font-thin pt-5">Login</h1>
+        <h1 className="text-5xl text-center mb-12 font-thin pt-5">Login</h1>
 
         <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
           <div className="p-8">
@@ -140,6 +140,7 @@ class Login extends Component {
                 </label>
 
                 <Input
+                  placeholder="shanky@example.com"
                   type="text"
                   name="email"
                   value={this.state.username}
@@ -158,6 +159,7 @@ class Login extends Component {
                 </label>
 
                 <Input
+                  placeholder="********"
                   type="password"
                   name="password"
                   value={this.state.password}

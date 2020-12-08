@@ -27,20 +27,24 @@ const email = (value) => {
   }
 };
 const minlength = (value) => {
-  if (value.length < 4) {
+  if (value.length < 5) {
     return (
       <div className="text-red-500" role="alert">
-        Password should be min 4 characters.
+        It must be at least 5 characters long.
       </div>
     );
   }
 };
 
-const maxlength = (value) => {
-  if (value.length > 15) {
+const passwordRequirement = (value) => {
+  let regx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/
+  if (!regx.test(value)) {
     return (
       <div className="text-red-500" role="alert">
-        Password should be max 15 characters.
+        Password must contain at least: <br />
+        - one UPPERCASE character <br />
+        - one LOWERCASE character <br />
+        - one NUMERIC character <br />
       </div>
     );
   }
@@ -55,20 +59,27 @@ const addressMinlength = (value) => {
   }
 };
 const phoneLength = (value) => {
-  if (value.length !==10) {
+  if (value.length < 10) {
     return (
       <div className="text-red-500" role="alert">
-        must be exactly 10 integers.
+        Phone number must not be less 10 digits.
       </div>
     );
   }
+  if (value.length > 12){
+    return (
+      <div className="text-red-500" role="alert">
+        It must not be more than 12 digits.
+      </div>
+    )
+  }
 };
 const IntegerValidation = (value) => {
-  let regx = /^([+-]?[0-9]\d*|0)$/;
+  let regx = /^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{4})$/;
   if (!regx.test(value)) {
     return (
       <div className="text-red-500" role="alert">
-        Must be integer.
+        Incorrect Phone Number.
       </div>
     );
   }
@@ -78,7 +89,7 @@ const dateValidation = (value) => {
   if (!regx.test(value)) {
     return (
       <div className="text-red-500" role="alert">
-        Must be date type
+        Must be of date type
       </div>
     );
   }
@@ -201,7 +212,7 @@ class Register extends Component {
     return (
       <div>
         <div className="max-w-2xl w-full mx-auto">
-          <h1 className="text-4xl text-center mb-12 font-thin pt-5">
+          <h1 className="text-5xl text-center mb-12 font-thin pt-5">
             Register
           </h1>
 
@@ -239,6 +250,7 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder="shankar"
                           type="text"
                           name="first_name"
                           id="first_name"
@@ -257,6 +269,7 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder="gurung"
                           type="text"
                           name="last_name"
                           id="last_name"
@@ -277,13 +290,14 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder="999-999-9999"
                           type="phone"
                           name="phone"
                           id="phone"
                           validations={[
                             required,
-                            IntegerValidation,
                             phoneLength,
+                            IntegerValidation,                            
                           ]}
                           value={this.state.phone}
                           onChange={this.onChangePhone}
@@ -299,6 +313,7 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder= "MM/DD/YYYY"
                           type="text"
                           name="dob"
                           id="dob"
@@ -319,6 +334,7 @@ class Register extends Component {
                       </label>
 
                       <Input
+                        placeholder="1 University Plaza, Brooklyn, NY 11201"
                         type="text"
                         name="address"
                         id="address"
@@ -337,6 +353,7 @@ class Register extends Component {
                       </label>
 
                       <Input
+                        placeholder="shanky@example.com"
                         type="email"
                         name="email"
                         validations={[required, email]}
@@ -356,9 +373,10 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder="********"
                           type="password"
                           name="password"
-                          validations={[required, minlength, maxlength]}
+                          validations={[required, minlength, passwordRequirement]}
                           value={this.state.password}
                           onChange={this.onChangePassword}
                           className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
@@ -373,6 +391,7 @@ class Register extends Component {
                         </label>
 
                         <Input
+                          placeholder="********"
                           type="password"
                           name="c_password"
                           validations={[required, password]}
