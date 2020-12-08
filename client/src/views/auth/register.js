@@ -250,7 +250,6 @@ class Register extends Component {
                         </label>
 
                         <Input
-                          placeholder="shankar"
                           type="text"
                           name="first_name"
                           id="first_name"
@@ -269,7 +268,6 @@ class Register extends Component {
                         </label>
 
                         <Input
-                          placeholder="gurung"
                           type="text"
                           name="last_name"
                           id="last_name"
@@ -334,7 +332,6 @@ class Register extends Component {
                       </label>
 
                       <Input
-                        placeholder="1 University Plaza, Brooklyn, NY 11201"
                         type="text"
                         name="address"
                         id="address"
