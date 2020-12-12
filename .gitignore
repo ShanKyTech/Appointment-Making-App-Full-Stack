@@ -7,6 +7,8 @@ config
 
 uploads
 
+.env
+
 # production
 build
 
