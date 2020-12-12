@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Link, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 import CheckButton from "react-validation/build/button";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import Select from "react-validation/build/select";
+import Textarea from "react-validation/build/textarea";
 import AppointmentService from "../../services/appointment-service";
 import locations from "../../services/location.json";
 const required = (value) => {
@@ -15,18 +19,23 @@ const required = (value) => {
     );
   }
 };
+
 class Appointments extends Component {
   constructor(props) {
     super(props);
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onChangeTime = this.onChangeTime.bind(this);
+    this.onChangeDetails = this.onChangeDetails.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       location: "",
-      date: "",
+      date: new Date(),
       time: "",
+      details: "",
       message: "",
+      dateError: false,
     };
   }
   onChangeLocation(e) {
@@ -36,13 +45,30 @@ class Appointments extends Component {
   }
   onChangeDate(e) {
     this.setState({
-      date: e.target.value,
+      date: e,
     });
+    if (e) {
+      this.setState({
+        dateError: false,
+      });
+    }
   }
   onChangeTime(e) {
     this.setState({
       time: e.target.value,
     });
+  }
+  onChangeDetails(e) {
+    this.setState({
+      details: e.target.value,
+    });
+  }
+  handleBlur(e) {
+    if (e.target.value === "") {
+      this.setState({
+        dateError: true,
+      });
+    }
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -52,13 +78,15 @@ class Appointments extends Component {
     });
     this.form.validateAll();
 
-    if (this.checkBtn.context._errors.length === 0) {
+    if (this.checkBtn.context._errors.length === 0 && !this.state.dateError) {
       AppointmentService.addNew(
         this.state.location,
         this.state.date,
-        this.state.time
+        this.state.time,
+        this.state.details
       ).then(
         () => {
+          toast("Appointment Created Successfully!");
           this.props.history.push("/appointments");
         },
         (error) => {
@@ -81,7 +109,7 @@ class Appointments extends Component {
     return (
       <div className="max-w-2xl w-full mx-auto">
         <h1 className="text-4xl text-center mb-2 font-thin pt-5">
-          Add new appointment
+          New Appointment
         </h1>
         <Link
           to="/appointments"
@@ -135,15 +163,18 @@ class Appointments extends Component {
               >
                 Date
               </label>
-
-              <Input
-                type="date"
-                name="date"
-                value={this.state.date}
+              <DatePicker
+                selected={this.state.date}
                 onChange={this.onChangeDate}
-                validations={[required]}
+                onBlur={this.handleBlur}
+                dateFormat="dd/MM/yyyy"
+                minDate={new Date()}
+                placeholderText="Select Date"
                 className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
               />
+              {this.state.dateError && (
+                <div className="text-red-500">This field is required!</div>
+              )}
             </div>
 
             <div className="mb-5">
@@ -160,6 +191,20 @@ class Appointments extends Component {
                 value={this.state.time}
                 onChange={this.onChangeTime}
                 validations={[required]}
+                className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
+              />
+            </div>
+            <div className="mb-5">
+              <label
+                htmlFor="time"
+                className="block mb-2 text-sm font-medium text-gray-600"
+              >
+                Message
+              </label>
+
+              <Textarea
+                value={this.state.details}
+                onChange={this.onChangeDetails}
                 className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
               />
             </div>

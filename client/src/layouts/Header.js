@@ -10,7 +10,7 @@ function Header(props) {
     props.history.push(path);
   };
   return (
-    <header className=" bg-indigo-600 p-3">
+    <header className=" bg-indigo-600 p-2">
       <nav className="container mx-auto px-10 flex items-center justify-between flex-wrap">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <span className="font-serif text-4xl tracking-tight text-white">
@@ -42,13 +42,13 @@ function Header(props) {
               <>
                 <Link
                   to="/"
-                  className="text-xl block mt-4 md:inline-block md:mt-0 text-white"
+                  className="text-xl font-serif block mt-4 md:inline-block md:mt-0 text-white"
                 >
-                  login
+                  Login
                 </Link>
                 <Link
                   to="/register"
-                  className="text-xl block mt-4 md:inline-block md:mt-0 text-white ml-5"
+                  className="text-xl font-serif block mt-4 md:inline-block md:mt-0 text-white ml-5"
                 >
                   Register
                 </Link>
@@ -56,14 +56,9 @@ function Header(props) {
             )}
             {auth && (
               <>
-                <Link
-                  to="/appointments"
-                  className="block mt-4 md:inline-block md:mt-0 text-white"
-                >
-                  Appointments
-                </Link>
+                
                 <button
-                  className="py-3 md:py-0 md:ml-5 text-white focus:outline-none "
+                  className="font-serif text-xl py-3 md:py-0 md:ml-5 text-white focus:outline-none "
                   onClick={logout}
                 >
                   Logout

@@ -17,10 +17,16 @@ module.exports = function (app) {
     controller.create
   );
   app.get("/api/appointments/view/:id", [authJwt.verifyToken], controller.view);
-  app.post(
-    "/api/appointments/update",
+  app.put("/api/appointments/update", [authJwt.verifyToken], controller.update);
+  app.get(
+    "/api/appointments/active/:id",
     [authJwt.verifyToken],
-    controller.update
+    controller.active
+  );
+  app.get(
+    "/api/appointments/cancel/:id",
+    [authJwt.verifyToken],
+    controller.cancel
   );
   app.delete(
     "/api/appointments/destroy/:id",

@@ -5,5 +5,15 @@ config
 
 .eslintcache
 
+uploads
+
 # production
 build
+
+
+# testing
+coverage
+
+
+# misc
+debug.log

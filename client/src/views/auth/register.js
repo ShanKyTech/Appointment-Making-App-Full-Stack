@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 import CheckButton from "react-validation/build/button";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import validator from "validator";
 import authenticate from "../../services/auth";
 import AuthService from "../../services/auth-service";
+
 const required = (value) => {
   if (!value) {
     return <div className="text-red-600">This field is required!</div>;
@@ -13,7 +15,7 @@ const required = (value) => {
 };
 const password = (value, props, components) => {
   if (value !== components["password"][0].value) {
-    return <span className="text-red-600">Passwords are not equal.</span>;
+    return <span className="text-red-600">Passwords are not same</span>;
   }
 };
 
@@ -21,7 +23,7 @@ const email = (value) => {
   if (!validator.isEmail(value)) {
     return (
       <div className="text-red-500" role="alert">
-        {value} is not a valid email.
+        "{value}" is not a valid email
       </div>
     );
   }
@@ -30,7 +32,7 @@ const minlength = (value) => {
   if (value.length < 5) {
     return (
       <div className="text-red-500" role="alert">
-        It must be at least 5 characters long.
+        Must be at least 5 characters long
       </div>
     );
   }
@@ -49,11 +51,12 @@ const passwordRequirement = (value) => {
     );
   }
 };
+
 const addressMinlength = (value) => {
   if (value.length < 5) {
     return (
       <div className="text-red-500" role="alert">
-        must be more than 5 characters
+        Must be more than 5 characters
       </div>
     );
   }
@@ -62,14 +65,14 @@ const phoneLength = (value) => {
   if (value.length < 10) {
     return (
       <div className="text-red-500" role="alert">
-        Phone number must not be less 10 digits.
+        Must not be less 10 digits
       </div>
     );
   }
   if (value.length > 12){
     return (
       <div className="text-red-500" role="alert">
-        It must not be more than 12 digits.
+        It must not be more than 12 digits
       </div>
     )
   }
@@ -79,7 +82,7 @@ const IntegerValidation = (value) => {
   if (!regx.test(value)) {
     return (
       <div className="text-red-500" role="alert">
-        Incorrect Phone Number.
+        Incorrect Phone Number
       </div>
     );
   }
@@ -186,6 +189,7 @@ class Register extends Component {
         this.state.password
       ).then(
         (response) => {
+          toast("Registration completed successfully!");
           let path = `/`;
           this.props.history.push(path);
         },
@@ -295,7 +299,8 @@ class Register extends Component {
                           validations={[
                             required,
                             phoneLength,
-                            IntegerValidation,                            
+                            IntegerValidation,
+                            
                           ]}
                           value={this.state.phone}
                           onChange={this.onChangePhone}
@@ -311,7 +316,7 @@ class Register extends Component {
                         </label>
 
                         <Input
-                          placeholder= "MM/DD/YYYY"
+                          placeholder= "DD/MM/YYYY"
                           type="text"
                           name="dob"
                           id="dob"
@@ -350,7 +355,7 @@ class Register extends Component {
                       </label>
 
                       <Input
-                        placeholder="shanky@example.com"
+                        placeholder="shanky@example.com"                        
                         type="email"
                         name="email"
                         validations={[required, email]}

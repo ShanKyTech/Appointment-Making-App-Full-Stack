@@ -5,11 +5,15 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     date: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATEONLY,
       allowNull: false,
     },
     time: {
-      type: Sequelize.STRING,
+      type: Sequelize.TIME,
+      allowNull: true,
+    },
+    details: {
+      type: Sequelize.TEXT,
       allowNull: true,
     },
   });

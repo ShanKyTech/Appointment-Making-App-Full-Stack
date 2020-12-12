@@ -9,19 +9,23 @@
         "@testing-library/user-event": "^12.1.10",
         "autoprefixer": "^9.8.6",
         "axios": "^0.21.0",
+        "moment": "^2.29.1",
         "postcss": "^7.0.35",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
+        "query-string": "^6.13.7",
+        "react": "^16.9.0",
+        "react-datepicker": "^3.3.0",
+        "react-dom": "^16.9.0",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.1",
+        "react-toastify": "^6.2.0",
         "react-validation": "^3.0.7",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
         "validator": "^13.5.1",
         "web-vitals": "^0.2.4"
     },
     "scripts": {
-        "start": "craco start",
-        "build": "craco build",
+        "start": "craco start .env",
+        "build": "craco build .env",
         "test": "craco test",
         "eject": "react-scripts eject"
     },
@@ -42,5 +46,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0"
     }
 }

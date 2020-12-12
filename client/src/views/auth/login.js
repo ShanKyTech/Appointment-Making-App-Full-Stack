@@ -19,25 +19,29 @@ const email = (value) => {
   if (!validator.isEmail(value)) {
     return (
       <div className="text-red-500" role="alert">
-        {value} is not a valid email.
+        {value} is not a valid email
       </div>
     );
   }
 };
 const minlength = (value) => {
-  if (value.length < 4) {
+  if (value.length < 5) {
     return (
       <div className="text-red-500" role="alert">
-        Password should be min 4 characters.
+        Must be at least 5 characters long
       </div>
     );
   }
 };
-const maxlength = (value) => {
-  if (value.length > 15) {
+const passwordRequirement = (value) => {
+  let regx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/
+  if (!regx.test(value)) {
     return (
       <div className="text-red-500" role="alert">
-        Password should be max 15 characters.
+        Password must contain at least: <br />
+        - one UPPERCASE character <br />
+        - one LOWERCASE character <br />
+        - one NUMERIC character <br />
       </div>
     );
   }
@@ -164,7 +168,7 @@ class Login extends Component {
                   name="password"
                   value={this.state.password}
                   onChange={this.onChangePassword}
-                  validations={[required, maxlength, minlength]}
+                  validations={[required, passwordRequirement, minlength]}
                   className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none focus:bg-gray-100"
                 />
               </div>

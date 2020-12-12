@@ -7,7 +7,8 @@ const app = express();
 app.use(cors());
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "10mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,11 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 require("./app/routes/authRoutes")(app);
 require("./app/routes/appointmentRoutes")(app);
+require("./app/routes/userRoutes")(app);
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to application." });
 });
+
+app.use("/uploads", express.static("uploads"));
 
 // for sync or migrate db
 // { force: true } for alter table
